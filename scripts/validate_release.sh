@@ -5,6 +5,7 @@ script_dir="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 repo_dir="$(cd -- "$script_dir/.." && pwd)"
 
 for path in SKILL.md agents/openai.yaml assets references scripts \
+  assets/images/recamera_skill.png \
   assets/recamera-pro-runtime/librknnrt.so \
   assets/recamera-pro-runtime/SHA256SUMS \
   scripts/inspect_onnx.py scripts/create_calibration_dataset.py \

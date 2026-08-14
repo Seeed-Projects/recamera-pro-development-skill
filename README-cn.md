@@ -1,6 +1,10 @@
-# 面向 Codex 的 Seeed reCamera Pro 开发 Skill
+# 面向 Agent 的 Seeed reCamera Pro 开发 Skill
 
 [English](README.md)
+
+<p align="center">
+  <img src="./assets/images/recamera_skill.png" alt="reCamera Pro Skills 自然语言开发流程" width="100%">
+</p>
 
 通过自然语言与 Codex 对话，完成 Seeed reCamera Pro 应用开发。
 

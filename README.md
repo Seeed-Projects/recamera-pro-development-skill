@@ -1,6 +1,10 @@
-# Seeed reCamera Pro Development Skill for Codex
+# Seeed reCamera Pro Development Skill for Agent
 
 [中文说明](README-cn.md)
+
+<p align="center">
+  <img src="./assets/images/recamera_skill.png" alt="reCamera Pro Skills — natural-language development workflow" width="100%">
+</p>
 
 Develop applications for Seeed reCamera Pro through natural-language conversations with Codex.
 

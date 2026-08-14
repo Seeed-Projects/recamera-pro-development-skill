@@ -1,4 +1,4 @@
-# Seeed reCamera Pro Development Skill for Codex
+# Seeed reCamera Pro Development Skill for GitHub Copilot
 
 [中文说明](README-cn.md)
 
@@ -6,9 +6,9 @@
   <img src="./assets/images/recamera_skill.png" alt="reCamera Pro Skills — natural-language development workflow" width="100%">
 </p>
 
-Develop applications for Seeed reCamera Pro through natural-language conversations with Codex.
+Develop applications for Seeed reCamera Pro through natural-language conversations with GitHub Copilot.
 
-After installing this skill, you can describe what you want to build—such as an AI camera application, an ONNX model conversion, microphone capture, speaker playback, or an RTSP inference stream—and Codex will use the reCamera Pro-specific workflow, tools, and hardware knowledge included in this repository.
+After installing this skill, you can describe what you want to build—such as an AI camera application, an ONNX model conversion, microphone capture, speaker playback, or an RTSP inference stream—and GitHub Copilot will use the reCamera Pro-specific workflow, tools, and hardware knowledge included in this repository.
 
 ## Choose your agent branch
 
@@ -22,13 +22,13 @@ Clone the branch for the agent you use. Each branch contains the same reCamera P
 | Cursor | `cursor` | `~/.cursor/skills/recamera-rknn-dev` |
 | Gemini CLI | `gemini-cli` | `~/.gemini/skills/recamera-rknn-dev` |
 
-This `main` branch is the Codex edition.
+This `github-copilot` branch is the GitHub Copilot edition.
 
-## What you can ask Codex to do
+## What you can ask GitHub Copilot to do
 
 ### Convert AI models
 
-Ask Codex to convert an ONNX model into an RKNN model for the RV1126B NPU. The skill keeps RKNN-Toolkit2 and RKNN Runtime aligned at version 2.3.2, inspects the model contract, handles FP16 or INT8 conversion, and preserves conversion metadata.
+Ask GitHub Copilot to convert an ONNX model into an RKNN model for the RV1126B NPU. The skill keeps RKNN-Toolkit2 and RKNN Runtime aligned at version 2.3.2, inspects the model contract, handles FP16 or INT8 conversion, and preserves conversion metadata.
 
 Example:
 
@@ -36,7 +36,7 @@ Example:
 
 ### Build native AI applications
 
-Ask Codex to create or modify C/C++ applications that use the RKNN Runtime on reCamera Pro. The skill understands the aarch64 target, cross-compilation requirements, sysroot layout, runtime library path, ABI checks, and deployment constraints.
+Ask GitHub Copilot to create or modify C/C++ applications that use the RKNN Runtime on reCamera Pro. The skill understands the aarch64 target, cross-compilation requirements, sysroot layout, runtime library path, ABI checks, and deployment constraints.
 
 Example:
 
@@ -52,7 +52,7 @@ Example:
 
 ### Develop GStreamer and RTSP pipelines
 
-Ask Codex to inspect the available GStreamer plugins, prepare cross-compilation dependencies, consume or publish RTSP streams, and integrate inference results into a multimedia application.
+Ask GitHub Copilot to inspect the available GStreamer plugins, prepare cross-compilation dependencies, consume or publish RTSP streams, and integrate inference results into a multimedia application.
 
 Example:
 
@@ -60,7 +60,7 @@ Example:
 
 ### Diagnose the development environment
 
-Codex can inspect the host, toolchain, sysroot, target libraries, camera and audio devices, GStreamer plugins, ELF dependencies, and RKNN version compatibility before building.
+GitHub Copilot can inspect the host, toolchain, sysroot, target libraries, camera and audio devices, GStreamer plugins, ELF dependencies, and RKNN version compatibility before building.
 
 Example:
 
@@ -80,9 +80,9 @@ It is not intended for the SG2002/riscv64 reCamera platform.
 
 ## Install
 
-### Ask Codex to install it
+### Ask GitHub Copilot to install it
 
-Send Codex this request:
+Send GitHub Copilot this request:
 
 ```text
 Install the reCamera Pro development skill from:
@@ -92,7 +92,7 @@ https://github.com/Seeed-Projects/recamera-pro-development-skill.git
 ### Install manually
 
 ```bash
-git clone --branch main --single-branch https://github.com/Seeed-Projects/recamera-pro-development-skill.git
+git clone --branch github-copilot --single-branch https://github.com/Seeed-Projects/recamera-pro-development-skill.git
 cd recamera-pro-development-skill
 ./scripts/install_skill.sh
 ```
@@ -100,25 +100,25 @@ cd recamera-pro-development-skill
 The skill is installed as:
 
 ```text
-~/.agents/skills/recamera-rknn-dev
+~/.copilot/skills/recamera-rknn-dev
 ```
 
-Codex detects skills in this user-level Agent Skills directory. If it does not appear in the current session, restart Codex.
+GitHub Copilot detects skills in this user-level Agent Skills directory. If it does not appear in the current session, restart GitHub Copilot.
 
 ## Use
 
 You can mention the skill explicitly:
 
-> Use `$recamera-rknn-dev` to build an application for reCamera Pro that detects people and publishes the annotated video over RTSP.
+> Use `/recamera-rknn-dev` to build an application for reCamera Pro that detects people and publishes the annotated video over RTSP.
 
 You can also describe the task naturally after the skill is installed:
 
 > I have an ONNX detection model. Convert it for reCamera Pro and create the corresponding C++ camera application.
 
-Codex will load the relevant conversion, cross-compilation, camera, audio, or streaming guidance automatically. Device connections, file transfers, and on-device execution are performed only when you explicitly request and authorize them.
+GitHub Copilot will load the relevant conversion, cross-compilation, camera, audio, or streaming guidance automatically. Device connections, file transfers, and on-device execution are performed only when you explicitly request and authorize them.
 
 ## Included knowledge
 
-The repository packages reusable Codex instructions, scripts, references, a native application template, and the Seeed-qualified RKNN Runtime 2.3.2 cross-link library. The technical commands are intentionally kept inside the skill so users can work primarily through natural language.
+The repository packages reusable GitHub Copilot instructions, scripts, references, a native application template, and the Seeed-qualified RKNN Runtime 2.3.2 cross-link library. The technical commands are intentionally kept inside the skill so users can work primarily through natural language.
 
 Before public release, the repository owner must add the applicable project license and any required notices for redistributed binary components.

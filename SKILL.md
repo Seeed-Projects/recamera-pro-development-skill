@@ -1,6 +1,6 @@
 ---
 name: recamera-rknn-dev
-description: Develop native AI and multimedia applications for Seeed reCamera Pro (RV1126B, aarch64) from Linux or WSL. Use when Codex needs to inspect a reCamera Pro or its build environment, convert ONNX models to RKNN, create or cross-compile C/C++ RKNN Runtime applications, capture camera or microphone input, play sound through the speaker, publish inference video with GStreamer/RTSP, construct a target sysroot, or diagnose architecture, ABI, linker, audio, video, GStreamer, RTSP, model-conversion, and NPU-runtime problems.
+description: Develop native AI and multimedia applications for Seeed reCamera Pro (RV1126B, aarch64) from Linux or WSL. Use when Gemini CLI needs to inspect a reCamera Pro or its build environment, convert ONNX models to RKNN, create or cross-compile C/C++ RKNN Runtime applications, capture camera or microphone input, play sound through the speaker, publish inference video with GStreamer/RTSP, construct a target sysroot, or diagnose architecture, ABI, linker, audio, video, GStreamer, RTSP, model-conversion, and NPU-runtime problems.
 ---
 
 # reCamera Pro RKNN Development

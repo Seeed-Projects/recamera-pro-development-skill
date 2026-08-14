@@ -3,7 +3,7 @@ set -euo pipefail
 
 script_dir="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 skill_dir="$(cd -- "$script_dir/.." && pwd)"
-destination_root="$HOME/.agents/skills"
+destination_root="$HOME/.claude/skills"
 destination="$destination_root/recamera-rknn-dev"
 mkdir -p "$destination_root"
 if [[ -e "$destination" ]]; then
@@ -11,7 +11,7 @@ if [[ -e "$destination" ]]; then
   exit 2
 fi
 mkdir -p "$destination"
-cp -a "$skill_dir/SKILL.md" "$skill_dir/agents" "$skill_dir/assets" \
+cp -a "$skill_dir/SKILL.md" "$skill_dir/assets" \
   "$skill_dir/references" "$skill_dir/scripts" "$destination/"
 chmod +x "$destination"/scripts/*.sh "$destination"/scripts/*.py
-printf 'Installed Codex Skill at %s\nRestart Codex if needed, then invoke $recamera-rknn-dev.\n' "$destination"
+printf 'Installed Claude Code Skill at %s\nRestart Claude Code if needed, then invoke /recamera-rknn-dev.\n' "$destination"

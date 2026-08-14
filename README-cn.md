@@ -1,4 +1,4 @@
-# 面向 Agent 的 Seeed reCamera Pro 开发 Skill
+# 面向 Codex 的 Seeed reCamera Pro 开发 Skill
 
 [English](README.md)
 
@@ -9,6 +9,20 @@
 通过自然语言与 Codex 对话，完成 Seeed reCamera Pro 应用开发。
 
 安装这个 skill 后，你只需要描述想实现的功能，例如开发 AI 摄像头应用、转换 ONNX 模型、使用麦克风和扬声器，或者输出带推理结果的 RTSP 视频流。Codex 会自动使用仓库中针对 reCamera Pro 准备的开发流程、工具和硬件知识。
+
+## 选择对应的 Agent 分支
+
+请根据使用的 Agent 克隆对应分支。各分支包含相同的 reCamera Pro 开发流程，只调整安装路径和使用说明。
+
+| Agent | 分支 | 用户级 Skill 目录 |
+| --- | --- | --- |
+| OpenAI Codex | `main` | `~/.agents/skills/recamera-rknn-dev` |
+| Claude Code | `claude-code` | `~/.claude/skills/recamera-rknn-dev` |
+| GitHub Copilot | `github-copilot` | `~/.copilot/skills/recamera-rknn-dev` |
+| Cursor | `cursor` | `~/.cursor/skills/recamera-rknn-dev` |
+| Gemini CLI | `gemini-cli` | `~/.gemini/skills/recamera-rknn-dev` |
+
+当前 `main` 分支是 Codex 版本。
 
 
 ## 可以让 Codex 完成什么
@@ -73,24 +87,24 @@ Codex 可以在构建前检查主机环境、交叉工具链、sysroot、目标�
 
 ```text
 请从下面的仓库安装 reCamera Pro development skill：
-https://github.com/Seeed-Projects/seeed-recamera-pro-codex-skill.git
+https://github.com/Seeed-Projects/recamera-pro-development-skill.git
 ```
 
 ### 手动安装
 
 ```bash
-git clone https://github.com/Seeed-Projects/seeed-recamera-pro-codex-skill.git
-cd seeed-recamera-pro-codex-skill
+git clone --branch main --single-branch https://github.com/Seeed-Projects/recamera-pro-development-skill.git
+cd recamera-pro-development-skill
 ./scripts/install_skill.sh
 ```
 
 默认安装位置：
 
 ```text
-~/.codex/skills/recamera-rknn-dev
+~/.agents/skills/recamera-rknn-dev
 ```
 
-如果设置了 `CODEX_HOME`，则会安装到 `$CODEX_HOME/skills`。安装完成后，请新建一个 Codex 会话。
+Codex 会从这个用户级 Agent Skills 目录发现该 skill。如果当前会话没有显示，请重启 Codex。
 
 ## 使用
 

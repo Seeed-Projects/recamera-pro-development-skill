@@ -1,4 +1,4 @@
-# Seeed reCamera Pro Development Skill for Agent
+# Seeed reCamera Pro Development Skill for Codex
 
 [中文说明](README-cn.md)
 
@@ -9,6 +9,20 @@
 Develop applications for Seeed reCamera Pro through natural-language conversations with Codex.
 
 After installing this skill, you can describe what you want to build—such as an AI camera application, an ONNX model conversion, microphone capture, speaker playback, or an RTSP inference stream—and Codex will use the reCamera Pro-specific workflow, tools, and hardware knowledge included in this repository.
+
+## Choose your agent branch
+
+Clone the branch for the agent you use. Each branch contains the same reCamera Pro development workflow with agent-specific installation and usage instructions.
+
+| Agent | Branch | User skill directory |
+| --- | --- | --- |
+| OpenAI Codex | `main` | `~/.agents/skills/recamera-rknn-dev` |
+| Claude Code | `claude-code` | `~/.claude/skills/recamera-rknn-dev` |
+| GitHub Copilot | `github-copilot` | `~/.copilot/skills/recamera-rknn-dev` |
+| Cursor | `cursor` | `~/.cursor/skills/recamera-rknn-dev` |
+| Gemini CLI | `gemini-cli` | `~/.gemini/skills/recamera-rknn-dev` |
+
+This `main` branch is the Codex edition.
 
 ## What you can ask Codex to do
 
@@ -72,24 +86,24 @@ Send Codex this request:
 
 ```text
 Install the reCamera Pro development skill from:
-https://github.com/Seeed-Projects/seeed-recamera-pro-codex-skill.git
+https://github.com/Seeed-Projects/recamera-pro-development-skill.git
 ```
 
 ### Install manually
 
 ```bash
-git clone https://github.com/Seeed-Projects/seeed-recamera-pro-codex-skill.git
-cd seeed-recamera-pro-codex-skill
+git clone --branch main --single-branch https://github.com/Seeed-Projects/recamera-pro-development-skill.git
+cd recamera-pro-development-skill
 ./scripts/install_skill.sh
 ```
 
 The skill is installed as:
 
 ```text
-~/.codex/skills/recamera-rknn-dev
+~/.agents/skills/recamera-rknn-dev
 ```
 
-If `CODEX_HOME` is configured, it is installed under `$CODEX_HOME/skills` instead. Start a new Codex session after installation.
+Codex detects skills in this user-level Agent Skills directory. If it does not appear in the current session, restart Codex.
 
 ## Use
 

@@ -1,0 +1,4 @@
+interface:
+  display_name: "reCamera RKNN Development"
+  short_description: "Build RKNN camera, audio, and RTSP apps"
+  default_prompt: "Use $recamera-rknn-dev to inspect my reCamera Pro and build an aarch64 RKNN camera, audio, or RTSP inference application."

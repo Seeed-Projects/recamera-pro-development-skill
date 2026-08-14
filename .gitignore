@@ -1,0 +1,19 @@
+# Local build and model outputs
+build/
+build-*/
+install/
+*.onnx
+*.rknn
+*.wav
+
+# Local environments and editor files
+.env
+.venv/
+.idea/
+.vscode/
+__pycache__/
+*.py[cod]
+
+# Temporary device inventories
+device-inspection*.txt
+*.log

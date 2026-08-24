@@ -26,21 +26,22 @@ gst-launch-1.0 -v v4l2src device=/dev/video13 num-buffers=30 \
 
 ## Workflow
 
-1. Run `scripts/inspect_wsl.sh`. When device access is authorized, also run `scripts/inspect_device.sh root@HOST`. Do not install or build until the host, compiler, sysroot, media devices, and target plugins are known. If inspecting a production device, compare its RKNN library SHA-256 with the bundled manifest and stop on mismatch.
-2. For model conversion, read `references/model-conversion.md`, run `scripts/setup_rknn_env.sh`, then use `--check` to verify the pinned environment without network changes. It reuses Conda when available, otherwise installs Miniforge without root and creates `recamera-rknn-2.3.2`.
-3. Obtain model files only from an authoritative or user-approved source. Preserve the source URL, license, export command, checksum, input layout, normalization, color order, resize policy, output semantics, and postprocessing. Never guess these values.
-4. Inspect ONNX with `scripts/inspect_onnx.py`. Resolve invalid graphs and unexpected dynamic inputs before conversion. For INT8, create a deterministic representative list with `scripts/create_calibration_dataset.py`; keep validation data separate.
-5. Convert ONNX with `scripts/convert_onnx.py`. Establish FP16 first unless the user explicitly requests INT8, then evaluate quantization or advanced optimization deliberately. Preserve the generated `.rknn.json` beside the model. For a conversion-only request, successful export with `target_platform='rv1126b'` completes the requested artifact; no device connection or RKNN Runtime library is needed.
-6. Run `scripts/compare_onnx_rknn.py`, Toolkit accuracy analysis, or on-device inference only when the user requests accuracy or runtime validation. These are optional validation workflows, not prerequisites for producing an RV1126B `.rknn`.
-7. For native code, run `scripts/create_project.sh PROJECT_DIR` to copy `assets/rknn-gst-app/` and fetch the matching 2.3.2 `rknn_api.h`. Read `references/cross-compilation.md` before configuring it.
-8. Require a target-compatible aarch64 compiler and sysroot. Prefer the vendor SDK toolchain/sysroot. A generic Ubuntu cross compiler is acceptable only after its glibc/libstdc++ requirements are verified against the board.
-9. For microphone, speaker, or streaming work, read `references/device-audio-rtsp.md`. Do not assume `alsasrc`, `alsasink`, an encoder, RTSP development headers, or pkg-config metadata exists merely because GStreamer, ALSA, and an RTSP runtime library exist.
-10. Build with `scripts/build_app.sh`, then require all checks to pass:
+1. Run `scripts/inspect_wsl.sh`. When an aarch64 compiler or sysroot is missing, bootstrap Seeed's official SDK as described in `references/cross-compilation.md`: clone `https://github.com/Seeed-Projects/recamera_pro_sdk.git`, run `./scripts/setup.sh`, then `source scripts/env.sh` and `bash scripts/check-sdk.sh`. `setup.sh` downloads approximately 2.5 GB, so obtain authorization before network downloads or package installation. Do not use a generic Ubuntu cross compiler unless its ABI is verified against the board.
+2. When device access is authorized, also run `scripts/inspect_device.sh root@HOST`. Do not build until the host, SDK compiler, sysroot, media devices, and target plugins are known. If inspecting a production device, compare its RKNN library SHA-256 with the bundled manifest and stop on mismatch.
+3. For model conversion, read `references/model-conversion.md`, run `scripts/setup_rknn_env.sh`, then use `--check` to verify the pinned environment without network changes. It reuses Conda when available, otherwise installs Miniforge without root and creates `recamera-rknn-2.3.2`.
+4. Obtain model files only from an authoritative or user-approved source. Preserve the source URL, license, export command, checksum, input layout, normalization, color order, resize policy, output semantics, and postprocessing. Never guess these values.
+5. Inspect ONNX with `scripts/inspect_onnx.py`. Resolve invalid graphs and unexpected dynamic inputs before conversion. For INT8, create a deterministic representative list with `scripts/create_calibration_dataset.py`; keep validation data separate.
+6. Convert ONNX with `scripts/convert_onnx.py`. Establish FP16 first unless the user explicitly requests INT8, then evaluate quantization or advanced optimization deliberately. Preserve the generated `.rknn.json` beside the model. For a conversion-only request, successful export with `target_platform='rv1126b'` completes the requested artifact; no device connection or RKNN Runtime library is needed.
+7. Run `scripts/compare_onnx_rknn.py`, Toolkit accuracy analysis, or on-device inference only when the user requests accuracy or runtime validation. These are optional validation workflows, not prerequisites for producing an RV1126B `.rknn`.
+8. For native code, run `scripts/create_project.sh PROJECT_DIR` to copy `assets/rknn-gst-app/` and fetch the matching 2.3.2 `rknn_api.h`. Read `references/cross-compilation.md` before configuring it.
+9. Require a target-compatible aarch64 compiler and sysroot. The official SDK exports `RECAMERA_SYSROOT` and `RECAMERA_CROSS_PREFIX` after `source scripts/env.sh`; retain those values for `scripts/build_app.sh`.
+10. For microphone, speaker, or streaming work, read `references/device-audio-rtsp.md`. Do not assume `alsasrc`, `alsasink`, an encoder, RTSP development headers, or pkg-config metadata exists merely because GStreamer, ALSA, and an RTSP runtime library exist.
+11. Build with `scripts/build_app.sh`, then require all checks to pass:
    - `file` reports ARM aarch64, not x86-64 or RISC-V.
    - `readelf -d` shows `NEEDED` for `librknnrt.so` and GStreamer libraries.
    - RUNPATH/RPATH contains `/oem/usr/lib`.
    - no build-tree or WSL absolute paths appear in runtime search paths.
-11. Hand the executable, `.rknn`, `.rknn.json`, validation report, invocation, expected input/output contract, and any non-firmware runtime dependencies to the user. Transfer or run on-device only when explicitly requested.
+12. Hand the executable, `.rknn`, `.rknn.json`, validation report, invocation, expected input/output contract, and any non-firmware runtime dependencies to the user. Transfer or run on-device only when explicitly requested.
 
 ## Guardrails
 

@@ -19,6 +19,16 @@ fi
 
 printf 'RECAMERA_SYSROOT=%s\n' "${RECAMERA_SYSROOT:-UNSET}"
 printf 'RECAMERA_CROSS_PREFIX=%s\n' "${RECAMERA_CROSS_PREFIX:-UNSET}"
+printf 'RECAMERA_PRO_SDK=%s\n' "${RECAMERA_PRO_SDK:-UNSET}"
+if [[ -n "${RECAMERA_PRO_SDK:-}" ]]; then
+  sdk_check="${RECAMERA_PRO_SDK}/scripts/check-sdk.sh"
+  if [[ -x "$sdk_check" ]]; then
+    printf 'recamera_pro_sdk_check=%s\n' "$sdk_check"
+    bash "$sdk_check"
+  else
+    printf 'recamera_pro_sdk_check=MISSING:%s\n' "$sdk_check"
+  fi
+fi
 script_dir="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 bundled_rknnrt="$script_dir/../assets/recamera-pro-runtime/librknnrt.so"
 printf 'bundled_RECAMERA_RKNNRT=%s\n' "$bundled_rknnrt"

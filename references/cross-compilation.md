@@ -1,5 +1,20 @@
 # Cross-compilation contract
 
+## Install Seeed's official SDK
+
+Use the official [reCamera Pro SDK](https://github.com/Seeed-Projects/recamera_pro_sdk) for its matched RV1126B GCC 12.4 toolchain and target sysroot. The repository holds the integration scripts; `setup.sh` downloads roughly 2.5 GB of versioned release assets, verifies SHA-256 before extraction, and is idempotent. Ask for authorization before installing host packages or downloading those assets.
+
+```bash
+sudo apt install cmake ninja-build pkg-config
+git clone https://github.com/Seeed-Projects/recamera_pro_sdk.git
+cd recamera_pro_sdk
+./scripts/setup.sh
+source scripts/env.sh
+bash scripts/check-sdk.sh
+```
+
+`source scripts/env.sh` exports `RECAMERA_SYSROOT` and `RECAMERA_CROSS_PREFIX` (as well as `CC`, `CXX`, and target-only `pkg-config` paths). Keep that shell active when invoking this skill's `scripts/build_app.sh`, or source the SDK environment again in each new shell. Do not place the SDK's generated `toolchain/` or `sysroot/` inside a Skill repository.
+
 ## Required local inputs
 
 Set these variables before building:
